@@ -1,6 +1,8 @@
 import streamlit as st
 import librosa
 import numpy as np
+from pydub import AudioSegment
+from io import BytesIO
 from scipy import signal
 from tensorflow.keras.models import load_model
 import joblib
@@ -21,32 +23,33 @@ def extract_mfcc(audio, sample_rate, num_mfcc=13, n_fft=2048, hop_length=512):
 
     return mfccs
 
-# Function to detect and convert to C#
-# This function assumes the use of 'librosa' for audio reading, no direct FFmpeg dependency
-def detect_and_convert_to_C_sharp(audio, sample_rate):
-    y = audio.get_array_of_samples()
+# Function to detect the most dominant frequency
+def detect_dominant_frequency(audio):
+    sample_rate = audio.frame_rate
+    y = np.array(audio.get_array_of_samples())
     f, t, S = signal.spectrogram(y, sample_rate)
 
-    # Detect the note from the audio
     max_freq_indices = np.argmax(S, axis=0)
     dominant_freqs = f[max_freq_indices]
 
-    # Find the most dominant frequency
-    note_freq = np.mean(dominant_freqs)
+    return np.mean(dominant_freqs)
 
-    # Convert the note to C#
-    C_sharp_freq = 277.18  # Frequency of C# (assuming it's in Hz)
-    freq_ratio = C_sharp_freq / note_freq
+# Function to preprocess and predict raag from MFCC features
+def predict_raag(audio_file, model, label_encoder):
+    audio = AudioSegment.from_file(audio_file, format=audio_file.name.split('.')[-1])
 
-    return audio._spawn(audio.raw_data, overrides={"frame_rate": int(audio.frame_rate * freq_ratio)})
+    # Convert the audio to MP3 format in memory
+    audio_bytes = BytesIO()
+    audio.export(audio_bytes, format="mp3")
+    audio_bytes.seek(0)
+    converted_audio = AudioSegment.from_file(audio_bytes, format="mp3")
 
-# Function to predict raag from MFCC features
-def predict_raag(audio, model, label_encoder):
-    # Load audio and get sample rate using librosa
-    audio, sample_rate = librosa.load(audio, sr=None)
+    # Extract the audio as an array
+    audio_array = np.array(converted_audio.get_array_of_samples())
+    sample_rate = converted_audio.frame_rate
 
-    # Extract MFCC features from the audio file
-    mfccs = extract_mfcc(audio, sample_rate)
+    # Extract MFCC features from the converted audio
+    mfccs = extract_mfcc(audio_array, sample_rate)
 
     # Reshape and normalize the MFCC data
     desired_shape = (216, 13)  # Shape expected by the model
