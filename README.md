@@ -40,6 +40,9 @@ The code was deployed using streamlit library. We created an interface with the 
 <img width="630" alt="image" src="https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/9bfae8fd-dc01-43b9-a39b-4f1d0e675ecc">
 
 
+![APP](https://raagindentificationmodel.streamlit.app/)
+
+
 - **Learning Outcome:**
 By this project, we learned to handle audio files and extract features out of them. Typically, audio file handling is not as easy as handling modalities like text, numbers but getting insights on it helped us link our love for music to the concepts the data science. We further want to work on expanding the scope of AI related projects in the field of classical music so that the legacy of classical music and its beauty is understood by all.
 
