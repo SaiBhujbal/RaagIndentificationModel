@@ -3,6 +3,10 @@
 AI driven Classical Raag Recognition System
 By Rahul Purandare, Sai Bhujbal and Tanay Kende
 
+![**APP**](https://raagindentificationmodel.streamlit.app/)
+
+
+
 ## Introduction:
 
 The word “raag” comes from the Sanskrit word ”ragam”  which means color or hue. Music or any form of art has many shades to it and each shade has a distinct essence. What gives any song its essence? You listen to the song “Dekha ek khaab” from the film “Silsila” and it feels like a light breeze of love that sways you away. On the other hand, if you listen to the iconic “Ae mere watan ke logon”   by Lata Mangeshkar, your heart fills with patriotism and gratitude for martyrs. And the melody of Madhubala’s “Pyar kiya toh darna kya”  makes u feel the power of defiant love.
@@ -38,9 +42,6 @@ We have trained our model using Convolution Neural Network. The model was design
 The code was deployed using streamlit library. We created an interface with the user. We ask the user to input an audio file of the format .wav,.mp3 or .m4a and then the pitch of that audio file is identified. Following this, the pitch is converted to C#. And then features are extracted and subsequently the raag is predicted.
 
 <img width="630" alt="image" src="https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/9bfae8fd-dc01-43b9-a39b-4f1d0e675ecc">
-
-
-![APP](https://raagindentificationmodel.streamlit.app/)
 
 
 - **Learning Outcome:**
