@@ -1,3 +1,5 @@
+!pip install librosa AudioSegment io scipy tensorflow
+
 import streamlit as st
 import librosa
 import numpy as np
