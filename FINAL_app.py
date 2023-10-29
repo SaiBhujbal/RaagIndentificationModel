@@ -7,7 +7,7 @@ from scipy import signal
 from tensorflow import keras
 
 # Load the trained model
-model = keras.models.load_model('mfcc_cnn_model_76percent.h5')  # Load the saved model
+model = keras.models.load_model('mfcc_cnn_model.h5')  # Load the saved model
 
 # Function to extract MFCC features from an audio file
 def extract_mfcc(audio, sample_rate, num_mfcc=13, n_fft=2048, hop_length=512):
