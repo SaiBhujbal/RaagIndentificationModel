@@ -14,7 +14,8 @@ Although there are 200 and above raags in Hindustani Classical Music, we chose t
 
 ## Methodology:
 
- 
+<img width="468" alt="methodology" src="https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/7b055f98-df53-4f0e-9ae3-bd4be77e110a">
+
 - **Data Collection:**
 The first step was to gather audio files of the 20 ragas we had chosen for classification. We chose five audio files of each raag of length of about 40 mins to 1 hour 15 mins. These were the performances of stalwarts like Pt. Bhimsen Joshi, Parveen Sultana, Kishori Amonkar etc. We also added our self-created data as one of our team members, Rahul Purandare has been pursuing classical music for the last 10 years. We arranged the audio files into subfolders of each raag. The audio files were of the format .mp3 or .m4a.
 
@@ -23,15 +24,21 @@ Preprocessing was arguably the most difficult part of the project. We had to tra
 
 - **Feature Extraction:**
 Feature extraction is the process of deriving features of an audio file. To draw inferences from an Audio file, there are several aspects of it that need to be taken into consideration like its frequency, amplitude etc. There are many ways of extracting features from audio files like MFCCs(Mel frequency cepstral coefficients), Chroma Features, Spectrogram, Centroid, Zero crossing rate etc. We decided to work on MFCCS. MFCCs or Mel frequency cepstral coefficient are a cluster of features extracted from an audio file that display its spectral characteristics. They aim to mimic human auditory system’s response to audio by capturing essential aspects of the signal. Using Librosa library. We extract mfcc values of each of our audio files. The values were obtained in an array format representing the expanse of the audio file. Given below is the plot of a typical mfcc extraction of an audio file.
-![image](https://github.com/SaiBhujbal/RaagIndentificationModel/assets/139531033/36533297-7cb9-47da-b202-5cee267b47f0)
 
- 
+![image](https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/5e799b92-11d1-4740-aef6-85578165efe8)
+
 
 - **Model Training:**
 We have trained our model using Convolution Neural Network. The model was designed using three convolution layers, using Adam optimizer, learning rate of 0.0001, relu as activation function and using softmax function to produce a probabilitstic classification at the output layer. The source code for this CNN was keras. We got a accuracy of 71.6% using this model.
 
+![image](https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/16799f9e-18db-4b7d-be34-66c9d6578248)
+
+
 - **Deployment:**
 The code was deployed using streamlit library. We created an interface with the user. We ask the user to input an audio file of the format .wav,.mp3 or .m4a and then the pitch of that audio file is identified. Following this, the pitch is converted to C#. And then features are extracted and subsequently the raag is predicted.
+
+<img width="993" alt="image" src="https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/40298adc-a35d-47fb-8fa2-d997972edf92">
+
 
 - **Learning Outcome:**
 By this project, we learned to handle audio files and extract features out of them. Typically, audio file handling is not as easy as handling modalities like text, numbers but getting insights on it helped us link our love for music to the concepts the data science. We further want to work on expanding the scope of AI related projects in the field of classical music so that the legacy of classical music and its beauty is understood by all.
