@@ -23,6 +23,8 @@ Preprocessing was arguably the most difficult part of the project. We had to tra
 
 - **Feature Extraction:**
 Feature extraction is the process of deriving features of an audio file. To draw inferences from an Audio file, there are several aspects of it that need to be taken into consideration like its frequency, amplitude etc. There are many ways of extracting features from audio files like MFCCs(Mel frequency cepstral coefficients), Chroma Features, Spectrogram, Centroid, Zero crossing rate etc. We decided to work on MFCCS. MFCCs or Mel frequency cepstral coefficient are a cluster of features extracted from an audio file that display its spectral characteristics. They aim to mimic human auditory system’s response to audio by capturing essential aspects of the signal. Using Librosa library. We extract mfcc values of each of our audio files. The values were obtained in an array format representing the expanse of the audio file. Given below is the plot of a typical mfcc extraction of an audio file.
+![image](https://github.com/SaiBhujbal/RaagIndentificationModel/assets/139531033/36533297-7cb9-47da-b202-5cee267b47f0)
+
  
 
 - **Model Training:**
