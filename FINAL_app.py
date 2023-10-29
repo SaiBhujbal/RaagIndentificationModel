@@ -1,14 +1,12 @@
 import streamlit as st
 import librosa
 import numpy as np
-from pydub import AudioSegment
-from io import BytesIO
 from scipy import signal
-from tensorflow import keras
+from tensorflow.keras.models import load_model
 import joblib
 
 # Load the trained model
-model = keras.models.load_model('mfcc_cnn_model_2.h5')  # Load the saved model
+model = load_model('mfcc_cnn_model_2.h5')  # Load the saved model
 
 # Load the label encoder from the pickled file
 label_encoder = joblib.load('label_encoder.pkl')  # Replace 'label_encoder.pkl' with your label encoder filename
@@ -23,9 +21,10 @@ def extract_mfcc(audio, sample_rate, num_mfcc=13, n_fft=2048, hop_length=512):
 
     return mfccs
 
-def detect_and_convert_to_C_sharp(audio):
-    sample_rate = audio.frame_rate
-    y = np.array(audio.get_array_of_samples())
+# Function to detect and convert to C#
+# This function assumes the use of 'librosa' for audio reading, no direct FFmpeg dependency
+def detect_and_convert_to_C_sharp(audio, sample_rate):
+    y = audio.get_array_of_samples()
     f, t, S = signal.spectrogram(y, sample_rate)
 
     # Detect the note from the audio
@@ -39,21 +38,15 @@ def detect_and_convert_to_C_sharp(audio):
     C_sharp_freq = 277.18  # Frequency of C# (assuming it's in Hz)
     freq_ratio = C_sharp_freq / note_freq
 
-    converted_audio = audio._spawn(audio.raw_data, overrides={
-        "frame_rate": int(audio.frame_rate * freq_ratio)
-    })
-
-    buffer = BytesIO()
-    converted_audio.export(buffer, format="wav")
-    buffer.seek(0)
-    return buffer
+    return audio._spawn(audio.raw_data, overrides={"frame_rate": int(audio.frame_rate * freq_ratio)})
 
 # Function to predict raag from MFCC features
 def predict_raag(audio, model, label_encoder):
-    buffer = detect_and_convert_to_C_sharp(audio)
-    audio, sample_rate = librosa.load(buffer, sr=None)
+    # Load audio and get sample rate using librosa
+    audio, sample_rate = librosa.load(audio, sr=None)
+
     # Extract MFCC features from the audio file
-    mfccs = extract_mfcc(audio, sample_rate)  # Extracting MFCCs from the audio variable
+    mfccs = extract_mfcc(audio, sample_rate)
 
     # Reshape and normalize the MFCC data
     desired_shape = (216, 13)  # Shape expected by the model
@@ -83,6 +76,5 @@ st.title("Raag Prediction from Audio")
 audio_file = st.file_uploader("Upload an audio file", type=["mp3", "wav", "ogg", "m4a", "flac"])
 
 if audio_file is not None:
-    audio = AudioSegment.from_file(audio_file, format=audio_file.name.split('.')[-1])
-    predicted_raag = predict_raag(audio, model, label_encoder)
+    predicted_raag = predict_raag(audio_file, model, label_encoder)
     st.write("Predicted Raag:", predicted_raag)
