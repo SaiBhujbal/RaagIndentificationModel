@@ -1,6 +1,5 @@
 librosa
 pydub
-io
 scipy
 tensorflow
 
