@@ -37,7 +37,7 @@ We have trained our model using Convolution Neural Network. The model was design
 - **Deployment:**
 The code was deployed using streamlit library. We created an interface with the user. We ask the user to input an audio file of the format .wav,.mp3 or .m4a and then the pitch of that audio file is identified. Following this, the pitch is converted to C#. And then features are extracted and subsequently the raag is predicted.
 
-<img width="993" alt="image" src="https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/40298adc-a35d-47fb-8fa2-d997972edf92">
+<img width="630" alt="image" src="https://github.com/SaiBhujbal/RaagIndentificationModel/assets/46700402/9bfae8fd-dc01-43b9-a39b-4f1d0e675ecc">
 
 
 - **Learning Outcome:**
