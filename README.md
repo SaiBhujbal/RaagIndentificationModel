@@ -3,7 +3,7 @@
 AI driven Classical Raag Recognition System
 By Rahul Purandare, Sai Bhujbal and Tanay Kende
 
-![**APP**](https://raagindentificationmodel.streamlit.app/)
+[**APP**](https://raagindentificationmodel.streamlit.app/)
 
 
 
