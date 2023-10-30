@@ -53,9 +53,29 @@ def predict_raag(audio, model, labels):
 
 # Streamlit web app
 st.title("Raag Prediction from Audio")
+st.markdown("---")
+st.markdown("Upload your audio file or try one of our samples below.")
 
-audio_file = st.file_uploader("Upload an audio file", type=["mp3", "wav", "ogg", "m4a", "flac"])
+audio_files = {
+    "Sample 1": "C:/Study/Coding/RaagDetection/data/Raag/Yaman/Yaman outsource/segment_25.wav",
+    "Sample 2": "C:/Study/Coding/RaagDetection/data/Raag/Alhaiya Bilawal/Alhaiya Bilawal outsource/segment_17.wav",
+    "Sample 3": "C:/Study/Coding/RaagDetection/data/Raag/Alhaiya Bilawal/Alhaiya Bilawal outsource/segment_23.wav"
+}
 
-if audio_file is not None:
-    predicted_raag = predict_raag(audio_file, model, labels)
+selected_file = st.selectbox("Select a sample audio file", list(audio_files.keys()))
+
+if st.button("Use selected sample"):
+    audio_data = open(audio_files[selected_file], "rb").read()
+    predicted_raag = predict_raag(audio_files[selected_file], model, labels)
+    st.audio(audio_data, format='audio/wav')
     st.write("Predicted Raag:", predicted_raag)
+    st.markdown("---")
+
+uploaded_file = st.file_uploader("Or upload your own audio file", type=["mp3", "wav", "ogg", "m4a", "flac"])
+
+if uploaded_file is not None:
+    uploaded_file_data = uploaded_file.read()
+    predicted_raag = predict_raag(uploaded_file, model, labels)
+    st.audio(uploaded_file_data, format='audio/wav')
+    st.write("Predicted Raag:", predicted_raag)
+    st.markdown("---")
