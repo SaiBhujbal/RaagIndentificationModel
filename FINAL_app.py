@@ -57,9 +57,9 @@ st.markdown("---")
 st.markdown("Upload your audio file or try one of our samples below.")
 
 audio_files = {
-    "Sample 1(A)": "sample_assets/sample1(alhaiyabilawal).wav",
-    "Sample 2(Y)": "sample_assets/sample2(yaman).wav",
-    "Sample 3(M)": "sample_assets/sample3(malkans).wav"
+    "Sample 1(A)": "sample_assets/sample(alhaiyabilawal).wav",
+    "Sample 2(Y)": "sample_assets/sample(yaman).wav",
+    "Sample 3(M)": "sample_assets/sample(malkans).wav"
 }
 
 # Radio buttons to select a sample audio file
