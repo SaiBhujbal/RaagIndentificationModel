@@ -66,17 +66,19 @@ audio_files = {
 selected_file = st.radio("Select a sample audio file", list(audio_files.keys()))
 
 if st.button("Use selected sample"):
-    audio_data = open(audio_files[selected_file], "rb").read()
-    predicted_raag = predict_raag(audio_files[selected_file], model, labels)
-    st.audio(audio_data, format='audio/wav')
+    audio_path = audio_files[selected_file]
+    predicted_raag = predict_raag(audio_path, model, labels)
+    st.audio(audio_path, format='audio/wav')
     st.write("Predicted Raag:", predicted_raag)
     st.markdown("---")
 
 uploaded_file = st.file_uploader("Or upload your own audio file", type=["mp3", "wav", "ogg", "m4a", "flac"])
 
 if uploaded_file is not None:
-    uploaded_file_data = uploaded_file.read()
-    predicted_raag = predict_raag(uploaded_file, model, labels)
-    st.audio(uploaded_file_data, format='audio/wav')
+    audio_data = uploaded_file.read()
+    with open('uploaded_audio.wav', 'wb') as f:
+        f.write(audio_data)
+    predicted_raag = predict_raag('uploaded_audio.wav', model, labels)
+    st.audio(audio_data, format='audio/wav')
     st.write("Predicted Raag:", predicted_raag)
     st.markdown("---")
