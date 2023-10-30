@@ -57,10 +57,9 @@ st.markdown("---")
 st.markdown("Upload your audio file or try one of our samples below.")
 
 audio_files = {
-    "Sample 1": "C:/Study/Coding/RaagDetection/data/Raag/Yaman/Yaman outsource/segment_25.wav",
-    "Sample 2": "C:/Study/Coding/RaagDetection/data/Raag/Alhaiya Bilawal/Alhaiya Bilawal outsource/segment_17.wav",
-    "Sample 3": "C:/Study/Coding/RaagDetection/data/Raag/Alhaiya Bilawal/Alhaiya Bilawal outsource/segment_23.wav"
-}
+    "Sample 1": "sample_assets/sample1(malkans).wav",
+    "Sample 2": "sample_assets/sample2(yaman).wav",
+    "Sample 3": "sample_assets/sample3(alhaiyabilawal).wav"
 
 selected_file = st.selectbox("Select a sample audio file", list(audio_files.keys()))
 
